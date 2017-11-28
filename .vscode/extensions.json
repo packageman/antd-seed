@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "dzannotti.vscode-babel-coloring",
+    "EditorConfig.editorconfig",
+    "mattyjones.vscode-tickscript",
+    "rebornix.project-snippets"
+  ]
+}

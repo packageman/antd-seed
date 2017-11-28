@@ -1,0 +1,11 @@
+{
+  "editor.rulers": [120],
+  "eslint.enable": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "root": true ,
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jasmine": true
+  },
+  "globals": {
+    "__DEV__": true
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ],
+  "rules": {
+    "func-names": "off",
+    "id-length": "off",
+    "no-loop-func": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "no-new": "off",
+    "no-cond-assign": "off",
+    "no-proto": "off",
+    "new-cap": "off",
+    "newline-per-chained-call": "off",
+    "consistent-return": "off",
+    "arrow-body-style": "off",
+    "global-require": "off",
+    "no-throw-literal": "off",
+    "guard-for-in": "warn",
+    "no-console": "error",
+    "linebreak-style": ["error", "unix"],
+    "semi": ["error", "always"],
+    "comma-dangle": ["error", "always-multiline"],
+    "max-len": ["error", 120],
+    "max-lines": ["error", { "max": 500 }],
+    "arrow-parens": "error",
+    "object-shorthand": ["error", "properties"],
+
+    "import/no-unresolved": "off",
+    "import/no-mutable-exports": "off",
+
+    "react/prefer-stateless-function": "off",
+    "react/jsx-curly-spacing": ["error", "never"],
+    "react/sort-comp": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    "react/prop-types": "off",
+
+    "jsx-a11y/anchor-is-valid": ["error", {
+      "aspects": ["invalidHref", "preferButton"]
+    }]
+  }
+}
