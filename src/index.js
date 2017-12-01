@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import dva from 'dva';
 import 'moment/locale/zh-cn';
+import { createLogger } from 'redux-logger';
 import browserHistory from 'history/createBrowserHistory';
 import './g2';
 import './index.less';
@@ -12,7 +13,7 @@ const app = dva({
 });
 
 // 2. Plugins
-// app.use({});
+app.use({ onAction: createLogger() });
 
 // 3. Register global model
 app.model(require('./models/global'));

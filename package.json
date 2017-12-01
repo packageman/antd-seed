@@ -1,5 +1,5 @@
 {
-  "name": "analytics-frontend",
+  "name": "antd-seed",
   "version": "1.0.0",
   "description": "Nothing to say, just to suppress the 'No description' warning",
   "private": true,
@@ -41,6 +41,7 @@
     "react-document-title": "2.0.3",
     "react-dom": "16.0.0",
     "react-fittext": "1.0.0",
+    "redux-logger": "3.0.6",
     "rollbar": "2.3.1"
   },
   "devDependencies": {

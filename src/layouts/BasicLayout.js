@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Layout, Menu, Icon, Avatar, Dropdown, Spin } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Link, Route, Redirect, Switch } from 'dva/router';
+import { Link, Route, Switch, Redirect } from 'dva/router';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Debounce from 'lodash-decorators/debounce';
@@ -11,6 +11,9 @@ import HeaderSearch from '../components/HeaderSearch';
 import NotFound from '../routes/Exception/404';
 import styles from './BasicLayout.less';
 import { appName } from '../config';
+import adminUserActions from '../actions/adminUser';
+import * as session from '../utils/session';
+import globalActions from '../actions/global';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -61,25 +64,22 @@ class BasicLayout extends React.PureComponent {
     });
     return { location, breadcrumbNameMap };
   }
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'user/fetchCurrent',
-    });
+  componentDidMount() {}
+
+  componentWillMount() {
+    const currentUser = session.getCurrentUser();
+    this.props.setCurrentUser(currentUser);
   }
+
   componentWillUnmount() {
     this.triggerResizeEvent.cancel();
   }
   onCollapse = (collapsed) => {
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: collapsed,
-    });
+    this.props.changeLayoutCollapsed(collapsed);
   }
   onMenuClick = ({ key }) => {
     if (key === 'logout') {
-      this.props.dispatch({
-        type: 'login/logout',
-      });
+      this.props.logout();
     }
   }
   getMenuData = (data, parentPath) => {
@@ -181,10 +181,7 @@ class BasicLayout extends React.PureComponent {
   }
   toggle = () => {
     const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
+    this.props.changeLayoutCollapsed(!collapsed);
     this.triggerResizeEvent();
   }
   @Debounce(600)
@@ -193,10 +190,9 @@ class BasicLayout extends React.PureComponent {
     event.initEvent('resize', true, false);
     window.dispatchEvent(event);
   }
+
   render() {
-    const {
-      currentUser, collapsed, getRouteData,
-    } = this.props;
+    const { currentUser, collapsed, getRouteData } = this.props;
 
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
@@ -303,6 +299,6 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
+  currentUser: state.global.currentUser,
   collapsed: state.global.collapsed,
-}))(BasicLayout);
+}), { ...globalActions, ...adminUserActions })(BasicLayout);

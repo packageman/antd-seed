@@ -1,3 +1,5 @@
 export default {
-  appName: 'Antd-Seed',
+  appName: 'Packageman',
+  copyright: '',
+  loginPage: '/adminUser/login',
 };
